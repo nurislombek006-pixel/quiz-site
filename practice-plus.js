@@ -303,15 +303,15 @@ function installFeedbackEvents(){
    if(!normalActive())return;
    if(e.target.closest('#options .option')){playSound('tap');vibrate('tap')}
    else if(e.target.closest('#accept-btn')){
-     try{
+     queueMicrotask(()=>{try{
        if(confirmed[currentIdx]===true){
          const ok=userAnswers[currentIdx]===sessionQuestions[currentIdx]?.answer;
          playSound(ok?'correct':'wrong');vibrate(ok?'correct':'wrong');
        }
-     }catch(e){}
+     }catch(e){} });
    }
    else if(e.target.closest('#next-btn,#prev-btn,#skip-btn')){playSound('tap');vibrate('tap')}
- });
+ },true);
 }
 function initAdvanced(){
  const panel=$('.qb-palette-dialog');
