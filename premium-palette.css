@@ -29,3 +29,56 @@ body.light[data-qb-palette]:not([data-qb-palette="default"]){--bg:#f5f7fc;--card
 #test-screen #accept-btn{flex:0 0 auto;min-height:52px;margin:8px 0!important}
 #test-screen #accept-btn.hidden{display:flex!important;visibility:hidden!important;pointer-events:none}
 #test-screen .question-actions{flex:0 0 auto;min-height:54px;margin:0!important}
+
+/* Premium palette v3: apply a chosen palette to the top controls and home actions. */
+body[data-qb-palette]:not([data-qb-palette="default"]) .topbar .menu-toggle,
+body[data-qb-palette]:not([data-qb-palette="default"]) .topbar .icon-btn{
+  background:linear-gradient(135deg,var(--qb-a),var(--qb-b))!important;
+  color:#fff!important;
+  border:1px solid rgba(255,255,255,.34)!important;
+  box-shadow:0 8px 22px color-mix(in srgb,var(--qb-a) 27%,transparent)!important;
+}
+body[data-qb-palette]:not([data-qb-palette="default"]) .topbar .subject-select,
+body.subject-picker-ready[data-qb-palette]:not([data-qb-palette="default"]) .topbar .subject-picker-trigger,
+body:not(.light).subject-picker-ready[data-qb-palette]:not([data-qb-palette="default"]) .topbar .subject-picker-trigger{
+  background:linear-gradient(120deg,var(--qb-a),var(--qb-b))!important;
+  color:#fff!important;
+  border:1px solid rgba(255,255,255,.30)!important;
+  box-shadow:0 8px 20px color-mix(in srgb,var(--qb-a) 24%,transparent)!important;
+}
+body[data-qb-palette]:not([data-qb-palette="default"]) .topbar .subject-switch-wrap:after{
+  color:#fff!important;
+}
+body[data-qb-palette]:not([data-qb-palette="default"]) #start-screen .mode-tab.active,
+body[data-qb-palette]:not([data-qb-palette="default"]) #start-screen .seg button.active,
+body[data-qb-palette]:not([data-qb-palette="default"]) #start-screen .menu-main-btn{
+  background:linear-gradient(125deg,var(--qb-a),var(--qb-b))!important;
+  border-color:transparent!important;
+  color:#fff!important;
+  box-shadow:0 10px 24px color-mix(in srgb,var(--qb-a) 24%,transparent)!important;
+}
+body[data-qb-palette]:not([data-qb-palette="default"]) #start-screen .mode-tab:not(.active),
+body[data-qb-palette]:not([data-qb-palette="default"]) #start-screen .seg button:not(.active){
+  border-color:color-mix(in srgb,var(--qb-a) 35%,var(--line))!important;
+}
+body[data-qb-palette]:not([data-qb-palette="default"]) #start-screen :is(input,select):focus-visible{
+  border-color:var(--qb-a)!important;
+  outline:2px solid color-mix(in srgb,var(--qb-a) 24%,transparent)!important;
+}
+body[data-qb-palette]:not([data-qb-palette="default"]) #side-drawer.qb-drawer-v2 .qb-drawer-head{
+  background:linear-gradient(125deg,var(--qb-a),var(--qb-b))!important;
+}
+#side-drawer.qb-drawer-v2 .qb-drawer-profile{
+  display:inline-block;
+  width:fit-content;
+  max-width:100%;
+  color:#eef2ff!important;
+  text-decoration:none!important;
+  letter-spacing:.2px!important;
+  overflow-wrap:anywhere;
+}
+#side-drawer.qb-drawer-v2 .qb-drawer-profile:focus-visible{
+  outline:2px solid white;
+  outline-offset:3px;
+  border-radius:3px;
+}
