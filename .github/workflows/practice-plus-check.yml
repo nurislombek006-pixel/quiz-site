@@ -1,0 +1,38 @@
+name: Check QuizBot UI assets
+on:
+  push:
+    paths:
+      - "practice-plus.js"
+      - "practice-plus.css"
+      - ".github/workflows/practice-plus-check.yml"
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Check JavaScript syntax
+        run: node --check practice-plus.js
+      - name: Check integration points
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const assert = require('node:assert/strict');
+          const js = fs.readFileSync('practice-plus.js', 'utf8');
+          const css = fs.readFileSync('practice-plus.css', 'utf8');
+          for (const name of [
+            'installProgress', 'installQuestionHooks', 'jumpTo', 'renderMap',
+            'parseHistory', 'renderStats', 'initAdvanced', 'initFeedback',
+            'installFeedbackEvents'
+          ]) assert.ok(js.includes(name), 'missing '+name);
+          assert.ok(js.includes("saveActiveSession(true)"), 'navigation should save answers');
+          assert.ok(js.includes("isPremiumUser()===true"), 'Premium should use existing verified checker');
+          assert.ok(css.includes('#test-screen .qb-progress-panel'), 'missing progress styles');
+          assert.ok(css.includes('@media(prefers-reduced-motion:reduce)'), 'missing reduced motion');
+          console.log('QuizBot UI source checks passed');
+          NODE
